@@ -343,7 +343,7 @@ Log In with using the following credentials:
 
 **username:** `data.trainning`
 
-**password:** `pass`
+**password:** `vkQL4`
 
 Now you should see the home page listing some `Subjects`.
 
@@ -375,6 +375,7 @@ Now you will create your Job and organize in the Subject you created in the last
 
 
 The others fields you can keep the default value:
+
  **Target:** this variable defines where Glove will create the table with the results of each step of your named query, in this case we want to create the tables in Redshift, so you can keep the default value
 
 13. Click `Add`, then it should add a shell script with values you inserted.
@@ -482,4 +483,5 @@ You have successfully learned how to:
 
 #### References
 [Hanger - Github](https://github.com/dafiti-group/hanger)
+
 [User friendly documentation](https://sites.google.com/dafiti.com.br/data-and-analytics-en-docs/home)
