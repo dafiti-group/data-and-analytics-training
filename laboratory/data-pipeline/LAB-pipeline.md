@@ -401,8 +401,8 @@ from (
 	 from spc_raw_bob_dafiti_ar.sales_order_item as soi
 	 inner join spc_raw_bob_dafiti_ar.sales_order as so on so.id_sales_order = soi.fk_sales_order
 	 where 1=1
-	 and soi.partition_value >= to_char(date_add('month', -1, current_date), 'YYYYMMDD')::bigint
-	 and so.partition_value >= to_char(date_add('month', -1, current_date), 'YYYYMMDD')::bigint
+	 and soi.partition_value >= to_char(date_add('month', -1, current_date), 'YYYYMM')::bigint
+	 and so.partition_value >= to_char(date_add('month', -1, current_date), 'YYYYMM')::bigint
 	 group by 1
 ) as a
 inner join (
