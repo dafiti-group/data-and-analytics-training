@@ -9,8 +9,8 @@ select
 , coalesce(cs.id_catalog_simple, 0)			as fk_product_simple
 , coalesce(cc.id_catalog_config, 0)			as fk_product_config
 , so.fk_customer
-, so.fk_address_billing
-, so.fk_address_shipping
+, so.fk_sales_order_address_billing 		as fk_address_billing
+, so.fk_sales_order_address_shipping 		as fk_address_shipping
 , so.shipping_amount / count(soi.id_sales_order_item) over(partition by so.id_sales_order) as gross_shipping_chaged_to_customer
 from spc_raw_bob_dafiti_ar.sales_order_item 	as soi
 inner join spc_raw_bob_dafiti_ar.sales_order 	as so on so.id_sales_order = soi.fk_sales_order
