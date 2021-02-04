@@ -215,7 +215,7 @@ Após o login você deve ser redirecionado para a página inicial e ver alguns `
 
 Antes de criar um Job você vai explorar algumas features do Hanger. Uma delas é o `Subject`, você pode criar assuntos para organizar seus jobs, entrar e acessar de forma mais fácil pois os assuntos são listados na página inicial para você.
 
-1. Na barra de navegação no lado esquerdo, clique no simbolo da seta para baixo em `Subject` e então selecione `Add Subject`
+1. Na barra de navegação no lado esquerdo, clique no icone ![arrow down icon](https://user-images.githubusercontent.com/57373602/106918451-44710400-671a-11eb-86b8-ca1ba37a6c92.png) em `Subject` e então selecione `Add Subject`
 
 2. No primeiro campo `Subject Name` coloque seu nome para ser mais fácil de encontrar mais tarde
 
@@ -226,7 +226,7 @@ Antes de criar um Job você vai explorar algumas features do Hanger. Uma delas �
 
 Agora você vai criar seu próprio Job ETL e organizar no assunto que você criou.
 
-1. Na barra lateral esquerda, clique no ícone de seta para baixo em `Job` e clique em `Add Job`
+1. Na barra lateral esquerda, clique no ícone ![arrow down icon](https://user-images.githubusercontent.com/57373602/106918451-44710400-671a-11eb-86b8-ca1ba37a6c92.png) em `Job` e clique em `Add Job`
 
 2. Na parte superior da página clique em `Create`
 
@@ -236,7 +236,7 @@ Agora você vai criar seu próprio Job ETL e organizar no assunto que você crio
 
 5. Clique em `>> Next`
 
-6. Na parte inferior da tela clique no ícone de seta para cima em `Shell Script` and select the option `SHELL_TEMPLATE-GLOVE-DATABASE-TRAINNING`
+6. Na parte inferior da tela clique no ícone ![arrow up icon](https://user-images.githubusercontent.com/57373602/106918873-a7629b00-671a-11eb-8c43-2f166fb03655.png) em `Shell Script` and select the option `SHELL_TEMPLATE-GLOVE-DATABASE-TRAINNING`
 
 7. No campo `Source Table Name` coloque `nps_feedback` 
 (nome da tabela no dados de dados de origem)

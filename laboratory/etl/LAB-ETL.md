@@ -208,7 +208,7 @@ Now you should see the home page listing some `Subjects`.
 
 Before creating the Job you will explore some features of Hanger. One of them is the `Subject`, you can create Subjects as a easy and fast way to find and access your jobs because it will be listed in the home page for you.
 
-1. In the left side bar, click in the arow down icon in `Subject` and then click `Add Subject`
+1. In the left side bar, click in the ![arrow down icon](https://user-images.githubusercontent.com/57373602/106918451-44710400-671a-11eb-86b8-ca1ba37a6c92.png) icon in `Subject` and then click `Add Subject`
 
 2. In the first field `Subject name` type your name to be easy to find later
 
@@ -218,7 +218,7 @@ Before creating the Job you will explore some features of Hanger. One of them is
 
 Now you will create your ETL Job and organize in the Subject you have just created.
 
-1. In the left side bar, click in the arrow down icon in `Job` and then click `Add Job`
+1. In the left side bar, click in the ![arrow down icon](https://user-images.githubusercontent.com/57373602/106918451-44710400-671a-11eb-86b8-ca1ba37a6c92.png) icon in `Job` and then click `Add Job`
 
 2. In the top part of the page click `Create`
 

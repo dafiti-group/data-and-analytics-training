@@ -215,7 +215,7 @@ Después de iniciar sesión, debe ser redirigido a la página de inicio y ver al
 
 Antes de crear un trabajo, explorará algunas funciones de suspensión. Uno de ellos es `Subject`, puede crear temas para organizar sus trabajos, ingresar y acceder más fácilmente ya que los temas se enumeran en la página de inicio para usted.
 
-1. En la barra de navegación de la izquierda, haga clic en el símbolo de la flecha hacia abajo en `Subject` y luego seleccione `Add Subject`
+1. En la barra de navegación de la izquierda, haga clic en el icono ![arrow down icon](https://user-images.githubusercontent.com/57373602/106918451-44710400-671a-11eb-86b8-ca1ba37a6c92.png) en `Subject` y luego seleccione `Add Subject`
 
 2. En el primer campo `Subject Name`, ingrese su nombre para que sea más fácil encontrarlo más tarde
 
@@ -226,7 +226,7 @@ Antes de crear un trabajo, explorará algunas funciones de suspensión. Uno de e
 
 Ahora va a crear su propio trabajo ETL y organizarlo en el tema que creó
 
-1. En la barra lateral izquierda, haga clic en el icono de flecha hacia abajo debajo de ´Job` y haga clic en `Add Job`
+1. En la barra lateral izquierda, haga clic en el icono ![arrow down icon](https://user-images.githubusercontent.com/57373602/106918451-44710400-671a-11eb-86b8-ca1ba37a6c92.png) de ´Job` y haga clic en `Add Job`
 
 2. En la parte superior de la página, haga clic en `Create`
 
@@ -236,7 +236,7 @@ Ahora va a crear su propio trabajo ETL y organizarlo en el tema que creó
 
 5. Haga clic en `>> Next`
 
-6. En la parte inferior de la pantalla, haga clic en el icono de flecha hacia arriba en `Shell Script` y seleccione la opción `SHELL_TEMPLATE-GLOVE-DATABASE-TRAINNING`
+6. En la parte inferior de la pantalla, haga clic en el icono ![arrow up icon](https://user-images.githubusercontent.com/57373602/106918873-a7629b00-671a-11eb-8c43-2f166fb03655.png) en `Shell Script` y seleccione la opción `SHELL_TEMPLATE-GLOVE-DATABASE-TRAINNING`
 
 7. En el campo `Source Table Name`, ingrese `nps_feedback`
 (nombre de la tabla en los datos de origen)
