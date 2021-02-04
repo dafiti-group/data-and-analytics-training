@@ -1,10 +1,10 @@
 select
- to_char(sale_order_store_date, 'YYYYMMDD') 		as partition_field
+ to_char(sale_order_store_date::timestamp, 'YYYYMMDD') as partition_field
 , src_fk_sale_order_store_item||2 					as custom_primary_key
 , src_fk_sale_order_store_item
 , src_fk_sale_order_store
 , sale_order_store_number
-, cast(sale_order_store_date as timestamp) 			as sale_order_store_date
+, sale_order_store_date::timestamp 					as sale_order_store_date
 , fk_product_simple
 , fk_product_config
 , fk_customer
