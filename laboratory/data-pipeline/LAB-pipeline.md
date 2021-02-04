@@ -24,7 +24,7 @@ We will use git version tool.
 
 - For linux you can run the following command to install
 
-```bash
+```shell
 sudo apt-get install git
 ```
 
@@ -54,7 +54,7 @@ In your Named Query process you will create a simple fact table for sales combin
   
 In this task you will start by setting the a git repostiry to deploy your NQ (Named Query), open `Git bash` installed in your windows system or open the terminal if you are using linux and make sure you are in the home folder of your user. You can validate running the following command:
 
-```bash
+```shell
 pwd
 ```
 
@@ -71,7 +71,7 @@ or similar to this:
 
 If your output is not similar to the above examples you can try to fix by running the following command:
 
-```bash
+```shell
 cd ~
 ```
 
@@ -83,7 +83,7 @@ The repository we are going to use in the Lab has a security level that requires
 
 To do so, run the following command:
 
-```bash
+```shell
 ssh-keygen
 ```
 
@@ -112,7 +112,7 @@ The key's randomart image is:
 
 Now we need to get the generated key to configure in Github, to print the key in your terminal run the following command:
 
-```bash
+```shell
 cat ~/.ssh/id_rsa.pub
 ```
 
@@ -135,7 +135,7 @@ Now you have a SSH key configured in your account for security.
 
 Let's create a folder to host the cloned repository, run the command below:
 
-```bash
+```shell
 mkdir -p Documents/training_repo;cd Documents/training_repo;pwd
 ```
 
@@ -147,18 +147,18 @@ Back to terminal run the git command to download the repository to your local ma
 
 > Replace <copied_link> with the link you copied from github
 
-```bash
+```shell
 git clone <copied_link>
 ```
 By running the command below, you can see a new folder was created
 
-```bash
+```shell
 ls -l
 ```
 
 Now a copy of the repository was created for you. Navigate inside the new folder with the command below:
 
-```bash
+```shell
 cd data-and-analytics-training
 ```
 
@@ -166,12 +166,12 @@ cd data-and-analytics-training
 
 Before start creating the NQ we need to create an isolated area in the recently cloned repository to avoid conflicts with someone modifications.  To do so you will create a branch. Create a branch with your name:
 
-```bash
+```shell
 git branch <your.name>
 ```
 Now you created at branch, you must natigate inside it to keep all your development isolated, to do so, run the command:
 
-```bash
+```shell
 git switch <your.name>
 ```
 
@@ -179,7 +179,7 @@ Now you are inside your new branch. Lastly you will create a folder in your bran
 
 > in the <your.name|random> variable write your name and add some random numbers to avoid name conflicts in the repository. **Save the value of this variable, you will need this later.**
 
-```bash
+```shell
 mkdir -p training/platform/<your.name|random>
 ```
 
@@ -279,7 +279,7 @@ Back to git command line, now you saved the files in the repository you should b
 
 Run the command:
 
-```bash
+```shell
 git status
 ```
 
@@ -287,7 +287,7 @@ It should show you the name of the folder you created written in red. This appea
 
 Now run the command:
 
-```bash
+```shell
 git add ./
 ```
 This command add all files modificated to a staging area. Git will apply the modifications to the repository only for files in this staging area. If some file you applied some change is not added to this staging area, the changes could never be able to be available to other users, it will be visible only for you.
@@ -295,7 +295,7 @@ If you need any file in staging area can be reverted.
 
 Run again the command:
 
-```bash
+```shell
 git status
 ```
 
@@ -305,7 +305,7 @@ It should show you in green color the named of the 2 files you have just created
 
 Following, run this command:
 
-```bash
+```shell
 git commit -m "deploy of my first named query"
 ```
 
@@ -314,7 +314,7 @@ This command get all files you added to staging area and apply the changes perma
 To finish, you need to send the files you created/modified to the repository in the cloud. Run the command below.
 > In this case, the variable `<your.name>` is the name of the branch you created previously. If needed, review the lab to remember how to list your branchs if you forgot the name you created the branch.
 
-```bash
+```shell
 git push origin <your.name>
 ```
 Now your files should be available in Github.
