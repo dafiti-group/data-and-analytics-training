@@ -228,7 +228,7 @@ Now you will create your ETL Job and organize in the Subject you have just creat
 
 5.  Click `>> Next`
 
-6. In the bottom of the page click in the arrow up icon in `Shell Script` and select the option `SHELL_TEMPLATE-GLOVE-DATABASE-TRAINNING`
+6. In the bottom of the page click in the ![arrow up icon](https://user-images.githubusercontent.com/57373602/106918873-a7629b00-671a-11eb-8c43-2f166fb03655.png) icon in `Shell Script` and select the option `SHELL_TEMPLATE-GLOVE-DATABASE-TRAINNING`
 
 7. In the field `Source Table Name` type `nps_feedback` 
 (name of the table in the source database)
