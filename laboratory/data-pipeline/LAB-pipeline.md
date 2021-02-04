@@ -435,7 +435,7 @@ Now your NQ job will be queued and executed, it may take a time to run and you c
 Now your process have successfully executed you can query the table that was created:
 
 ```sql
-select * from business_layer.fact_sales_training_<your-name>_<random> limit 100;
+select * from spc_business_layer.fact_sales_training_<your-name>_<random> limit 100;
 ```
 
 Now to validate the behavior of your process you will run it again but changing the values of some variables, click in the name of your Job, in the end of page click `edit`.
