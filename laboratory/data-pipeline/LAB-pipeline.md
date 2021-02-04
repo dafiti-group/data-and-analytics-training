@@ -1,3 +1,4 @@
+
 # Data Pipeline
 
 
@@ -329,7 +330,7 @@ When you create a `pull request` your are requesting your modifications to be ap
 
 Ask your instructor to approve your pull request so you can continue the laboratory.
 
-# Task 4: Create Job in Hanger
+# Task 4: Job in Hanger
 
 Now your files are available in the Github repository Glove can access them to run your process, so we can create the Job in Hanger.
 
@@ -346,16 +347,139 @@ Log In with using the following credentials:
 
 Now you should see the home page listing some `Subjects`.
 
+### 4.1 Configure a Job
 
+Now you will create your Job and organize in the Subject you created in the last Lab.
+
+1. In the left side bar, click in the ![arrow down icon](https://user-images.githubusercontent.com/57373602/106918451-44710400-671a-11eb-86b8-ca1ba37a6c92.png) icon in `Job` and then click `Add Job`
+
+2. In the top part of the page click `Create`
+
+3. In the field `Template` make sure the selected value is `TEMPLATE_EMPTY`
+
+4. in the field `Name` name as `Trial-Trainning-${YOUR_NAME}-GLOVE_NQ_fact_sales` (don't forget to replace the variable)
+
+5.  Click `>> Next`
+
+6. In the bottom of the page click in the ![arrow up icon](https://user-images.githubusercontent.com/57373602/106918873-a7629b00-671a-11eb-8c43-2f166fb03655.png) icon in `Shell Script` and select the option `SHELL_TEMPLATE-GLOVE-NQ-TRAINNING`
+
+7. In the field `DAYS_GONE_FROM_DATE` type `14` 
+(Start of delta range to update the table)
+
+
+9. Set `Named Query Folder` with the name of folder of your NQ you defined in variable `<your.name|random>`
+(folder containing your named query)
+
+10.  In the field `DAYS_GONE_TO_DATE` type `7` 
+(End of delta range to update the table)
+
+
+The others fields you can keep the default value:
+ **Target:** this variable defines where Glove will create the table with the results of each step of your named query, in this case we want to create the tables in Redshift, so you can keep the default value
+
+13. Click `Add`, then it should add a shell script with values you inserted.
+This script runs a Glove process and execute your NQ.
+
+14. In the end of the page click `Subject`, select the subject you created in the last Lab and click `Add`
+
+15. In the end of the page click in the button `Checkup`, it will add some new fields to you fill up
+
+16. In the fields `name` and `description` put `load validation`
+
+17. In `connection` select `REDSHIFT DEV`
+
+18. In the field `SQL` put the query below
+
+>  Remember to replace the variables with the same values you used to define the file name of your NQ
+```sql
+select
+max(abs((1 - (b.gmv / a.gmv)) * 100)) as check_
+from (
+	 select
+	 to_char(cast(so.created_at as timestamp), 'YYYYMMDD')::bigint as id_date
+	 , sum(soi.paid_price) as gmv
+	 from spc_raw_bob_dafiti_ar.sales_order_item as soi
+	 inner join spc_raw_bob_dafiti_ar.sales_order as so on so.id_sales_order = soi.fk_sales_order
+	 where 1=1
+	 and soi.partition_value >= to_char(date_add('month', -1, current_date), 'YYYYMMDD')::bigint
+	 and so.partition_value >= to_char(date_add('month', -1, current_date), 'YYYYMMDD')::bigint
+	 group by 1
+) as a
+inner join (
+	 select
+	 to_char(sale_order_store_date, 'YYYYMMDD')::bigint as id_date
+	 , sum(gross_merchandise_value) as gmv
+	 from business_layer.fact_sales_training_<your-name>_<random>
+	 group by 1
+) b on a.id_date = b.id_date
+```
+
+This query will be executed when your process finishs, to validate the load and make sure every thing is ok.
+
+19. In `Condition` select `LOWER_THAN_OR_EQUAL`
+
+20. In `Threshold` put the value `2`
+
+21. In the end of the page click `Save` and then click `Build`
+
+Now your NQ job will be queued and executed, it may take a time to run and you can press `F5` to upate the page and validate the current job status. Your job may pass by 3 status:
+
+*`Building` or `Rebuilding`:* Means your Job is queued and waiting to run (the Job wait in the queue because of server limitation or dependecies block)
+*`Running`:* Means your Job is current in execution
+*`Success`:* Means your Job completed without any error
+
+> If your job receive any other different status you can click in the `?` icon in right side of the screen to see the description of each status.
+
+### 4.2 Validating Process Behavior
+
+Now your process have successfully executed you can query the table that was created:
+
+```sql
+select * from business_layer.fact_sales_training_<your-name>_<random> limit 100;
+```
+
+Now to validate the behavior of your process you will run it again but changing the values of some variables, click in the name of your Job, in the end of page click `edit`.
+
+In the shell script there are 2 variables in the first 2 lines, `DAYS_GONE_FROM_DATE` and `DAYS_GONE_TO_DATE`, change de values of those 2 variables to `7` and `0` respectively.
+
+In the end of the page click `Save` and then click `Build`
+
+When the process finishs, run the 2 queries below. You will notice the table in the first query (generated by the first step of your NQ) contains data referent only to the last 7 days as you changed the parameters in the Job configuration, because the first step of your NQ has scope `full`.
+
+The table in the second query (generated by the second step of your NQ) contains data referent to the last 14 days, Glove didn't replaced the histocal data, only the changes were applied, because the second step of your NQ has scope `partition`.
+
+```sql
+select
+  min(sale_order_store_date)
+, max(sale_order_store_date)
+from staging.fact_sales_delta_load_<your-name>_<random>
+;
+
+select
+  min(sale_order_store_date)
+, max(sale_order_store_date)
+from business_layer.fact_sales_training_<your-name>_<random>
+;
+```
+
+### 4.3 Validate Load Integrity
+
+Back in Hanger, in front of the name your Job should appears a text `CHECKUP`. Click in this link, it will open a new screen containing a list of HealthCheck executions for your process, and you can analyse if it's ok. You can change the chart view to a table view.
+
+Feel free to explore Hanger.
 
 # Conclusion
 
-You used Redshift and Redshift Spectrum to deal with some file formarts and run a simple ETL. You have successfully created your own ETL process using Glove and managed with Hanger by setting the necessary parameters to extract data from a system database to load into our data lake. Congratulations!
+You created a Named Query process using an specific module of Glove data integration and made all configurations in Hanger with Health Check to validate the quality of your process. You used git and Github to do the deployment of your process and isolate all your changes to avoid conflicts. Congratulations!
 
 You have successfully learned how to:
 
-- Configure your github account to use SSH
+- Configure your Github account to use SSH
 - Use git version tool to manipulate your modifications
 - Create and configure a Named Query process
 - Create and configure a Job in Hanger
 - Add HealthChecks to your Job
+
+#### References
+[Hanger - Github](https://github.com/dafiti-group/hanger)
+[User friendly documentation](https://sites.google.com/dafiti.com.br/data-and-analytics-en-docs/home)
