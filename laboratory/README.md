@@ -11,4 +11,5 @@
 ## 2. Data Pipeline
 
 - [English](data-pipeline/LAB-pipeline.md)
+- [Portugês](data-pipeline/LAB-pipeline-pt-br.md)
 - [Español](data-pipeline/LAB-pipeline-es.md)
