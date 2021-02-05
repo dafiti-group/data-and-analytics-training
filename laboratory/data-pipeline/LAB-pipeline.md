@@ -29,9 +29,9 @@ We will use git version tool.
 sudo apt-get install git
 ```
 
-You also need to have an account in github platform, if necessary you can create your accont by clicking [here](https://github.com/join).
+You also need to have an account in github platform, if necessary you can create your account by clicking [here](https://github.com/join).
 
-I recomend you to use your commercial e-mail to register to github.
+I recommend you to use your commercial e-mail to register to github.
 
 
 ### Overview
@@ -40,7 +40,7 @@ I recomend you to use your commercial e-mail to register to github.
 
 - **Glove** is a data integration tool, we can use to create ETL jobs, automate SQL script executions and more. In this lab we will be using one specific module of Glove: Module query.
 
-- **Hanger** is service for workflow orchquestration, it help us automate, manage, organize and validate our jobs and workflows.
+- **Hanger** is service for workflow orchestration, it help us automate, manage, organize and validate our jobs and workflows.
 
 
   
@@ -170,7 +170,7 @@ Before start creating the NQ we need to create an isolated area in the recently 
 ```shell
 git branch <your.name>
 ```
-Now you created at branch, you must natigate inside it to keep all your development isolated, to do so, run the command:
+Now you created at branch, you must navigate inside it to keep all your development isolated, to do so, run the command:
 
 ```shell
 git switch <your.name>
@@ -184,13 +184,13 @@ Now you are inside your new branch. Lastly you will create a folder in your bran
 mkdir -p training/platform/<your.name|random>
 ```
 
-> To list all avalilable branchs in your repository run the command `git branch` 
+> To list all available branchs in your repository run the command `git branch` 
 
 # Task 2: Create Named Query
 
 In this task you will set some NQ steps to to create a fact table in Data Warehouse. You will extract data from Athena and model the table in Redshift, you will know in practice how each scope of named query works.
 
-Open you prefered text editor and create a file with the following query:
+Open your preferred text editor and create a file with the following query:
 
 > **Note:** there are 2 variables in this query but you don't need to replace it, you will set the value of the variables in Glove parameters
 
@@ -415,7 +415,7 @@ inner join (
 ) b on a.id_date = b.id_date
 ```
 
-This query will be executed when your process finishs, to validate the load and make sure every thing is ok.
+This query will be executed when your process finishes, to validate the load and make sure every thing is ok.
 
 19. In `Condition` select `LOWER_THAN_OR_EQUAL`
 
@@ -425,7 +425,7 @@ This query will be executed when your process finishs, to validate the load and 
 
 Now your NQ job will be queued and executed, it may take a time to run and you can press `F5` to upate the page and validate the current job status. Your job may pass by 3 status:
 
-*`Building` or `Rebuilding`:* Means your Job is queued and waiting to run (the Job wait in the queue because of server limitation or dependecies block)
+*`Building` or `Rebuilding`:* Means your Job is queued and waiting to run (the Job wait in the queue because of server limitation or dependencies block)
 *`Running`:* Means your Job is current in execution
 *`Success`:* Means your Job completed without any error
 

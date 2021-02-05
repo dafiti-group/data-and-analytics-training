@@ -263,7 +263,7 @@ This script runs a Glove process and execute an ETL.
 
 Now your ETL job will be queued and executed, it may take a time to run and you can press `F5` to upate the page and validate the current job status. Your job may pass by 3 status:
 
-*`Building` or `Rebuilding`:* Means your Job is queued and waiting to run (the Job wait in the queue because of server limitation or dependecies block)
+*`Building` or `Rebuilding`:* Means your Job is queued and waiting to run (the Job wait in the queue because of server limitation or dependencies block)
 *`Running`:* Means your Job is current in execution
 *`Success`:* Means your Job completed without any error
 
