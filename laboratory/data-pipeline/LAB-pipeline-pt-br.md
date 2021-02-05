@@ -45,7 +45,7 @@ Eu recomendo que você use seu e-mail comercial para se registrar no github.
   
 # Starting Lab
   
-Neste laboratório, você usará a ferramenta de versão git para controlar e isolar suas modificações em um repositório git (usaremos o [Github](https://github.com/)). Você criará um processo de consulta nomeada e implantará usando git para ser executado no gancho com luva usando a consulta de módulo. No Hanger, você cria um Health Check para validar a integridade do seu processo.
+Neste laboratório, você usará a ferramenta de versão git para controlar e isolar suas modificações em um repositório git (usaremos o [Github](https://github.com/)). Você criará um processo de consulta nomeada e implantará usando git para ser executado no Hanger com luva usando a consulta de módulo. No Hanger, você cria um Health Check para validar a integridade do seu processo.
 
 Em seu processo de Consulta Nomeada, você criará uma tabela de fatos simples para vendas combinando alguns atributos de configuração.
   
@@ -331,7 +331,7 @@ Quando você cria um `pull request`, está solicitando que suas modificações s
 
 Peça ao seu instrutor para aprovar sua solicitação de pull para que você possa continuar com o laboratório.
 
-# Tarefa 4: Trabalho no gancho
+# Tarefa 4: Job no Hanger
 
 Agora seus arquivos estão disponíveis no repositório Github Glove pode acessá-los para rodar seu processo, para que possamos criar o Job no Hanger.
 
@@ -350,7 +350,7 @@ Agora você deve ver a página inicial listando alguns `Subjects`.
 
 ### 4.1 Configurando o Job
 
-Agora você criará seu Trabalho e o organizará no Assunto que criou no último Laboratório.
+Agora você criará seu Job e o organizará no Assunto que criou no último Laboratório.
 
 1. Na barra lateral esquerda, clique no ![arrow down icon](https://user-images.githubusercontent.com/57373602/106918451-44710400-671a-11eb-86b8-ca1ba37a6c92.png) ícone em `Job` e, em seguida, clique em `Add Job`
 
@@ -424,13 +424,13 @@ Esta consulta será executada quando seu processo terminar, para validar a carga
 
 21. No final da página clique em `Save` e, em seguida, clique em `Build`
 
-Agora seu trabalho NQ será enfileirado e executado, pode levar algum tempo para ser executado e você pode pressionar `F5` para atualizar a página e validar o status do trabalho atual. Seu trabalho pode passar por 3 status:
+Agora seu Job NQ será enfileirado e executado, pode levar algum tempo para ser executado e você pode pressionar `F5` para atualizar a página e validar o status do Job atual. Seu Job pode passar por 3 status:
 
-*`Building` ou `Rebuilding`:* Significa que o seu trabalho está na fila e esperando para ser executado (o trabalho está esperando na fila por causa da limitação do servidor ou bloqueio de dependências)
-*`Running`:* Significa que seu trabalho está em execução
-*`Success`:* Significa que seu trabalho foi concluído sem nenhum erro
+*`Building` ou `Rebuilding`:* Significa que o seu Job está na fila e esperando para ser executado (o Job está esperando na fila por causa da limitação do servidor ou bloqueio de dependências)
+*`Running`:* Significa que seu Job está em execução
+*`Success`:* Significa que seu Job foi concluído sem nenhum erro
 
-> Se o seu trabalho receber qualquer outro status diferente, você pode clicar no ícone `?` No lado direito da tela para ver a descrição de cada status.
+> Se o seu Job receber qualquer outro status diferente, você pode clicar no ícone `?` No lado direito da tela para ver a descrição de cada status.
 
 ### 4.2 Validando o comportamento do processo
 
@@ -479,8 +479,8 @@ Você aprendeu com sucesso como:
 - Configurar sua conta Github para usar SSH
 - Usar a ferramenta git version para manipular suas modificações
 - Criar e configurar um processo de Named Query
-- Criar e configurar um trabalho no gancho
-- Adicionar verificações de saúde ao seu trabalho
+- Criar e configurar um Job no Hanger
+- Adicionar HealthChecks ao seu Job
 
 #### Referências
 [Hanger - Github](https://github.com/dafiti-group/hanger)
