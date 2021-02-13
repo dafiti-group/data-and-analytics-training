@@ -53,7 +53,7 @@ In your Named Query process you will create a simple fact table for sales combin
   
 # Task 1: Preparing the Environment
   
-In this task you will start by setting the a git repostiry to deploy your NQ (Named Query), open `Git bash` installed in your windows system or open the terminal if you are using linux and make sure you are in the home folder of your user. You can validate running the following command:
+In this task you will start by setting the a git repository to deploy your NQ (Named Query), open `Git bash` installed in your windows system or open the terminal if you are using linux and make sure you are in the home folder of your user. You can validate running the following command:
 
 ```shell
 pwd

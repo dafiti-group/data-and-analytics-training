@@ -6,7 +6,7 @@
 Depois de concluir este laboratório, você saberá como:
 
 - Usar a ferramenta de versão git
-- Criar um processo de Consulta Nomeada usando o módulo de consulta Glove
+- Criar um processo de Named Query usando o módulo query do Glove
 - Implantar um processo de Named Query
 - Crie um pipeline de dados no Hanger
 
@@ -17,7 +17,7 @@ Este laboratório leva 40 minutos para ser concluído.
 
 ### Pré-requisitos
 
-Você precisa de um software específico instalado em sua máquina para concluir as propriedades deste laboratório.
+Você precisa de um software específico instalado em sua máquina para concluir esse laboratório devidamente.
 Usaremos a ferramenta de versão git.
 
 - Para Windows você acessar [aqui](https://gitforwindows.org/) para baixar e instalar.
@@ -37,7 +37,7 @@ Eu recomendo que você use seu e-mail comercial para se registrar no github.
 
 - **Git** é uma ferramenta de versão que pode ser usada para rastrear todas as alterações em seus projetos, você pode ter várias versões de um arquivo e gerenciar todas as alterações.
 
-- **Glove** é uma ferramenta de integração de dados que podemos usar para criar tarefas ETL, automatizar execuções de scripts SQL e muito mais. Neste laboratório, usaremos um módulo específico de Glove: Consulta de módulo.
+- **Glove** é uma ferramenta de integração de dados que podemos usar para criar tarefas ETL, automatizar execuções de scripts SQL e muito mais. Neste laboratório, usaremos um módulo específico de Glove: módulo query.
 
 - **Hanger** é um serviço de orquestração de workflows, que nos ajuda a automatizar, gerenciar, organizar e validar nossos jobs e workflows.
 
@@ -45,14 +45,14 @@ Eu recomendo que você use seu e-mail comercial para se registrar no github.
   
 # Starting Lab
   
-Neste laboratório, você usará a ferramenta de versão git para controlar e isolar suas modificações em um repositório git (usaremos o [Github](https://github.com/)). Você criará um processo de consulta nomeada e implantará usando git para ser executado no Hanger com luva usando a consulta de módulo. No Hanger, você cria um Health Check para validar a integridade do seu processo.
+Neste laboratório, você usará a ferramenta de versão git para controlar e isolar suas modificações em um repositório git (usaremos o [Github](https://github.com/)). Você criará um processo de Named Query e implantará usando git para ser executado no Hanger com luva usando o módulo query. No Hanger, você cria um Health Check para validar a integridade do seu processo.
 
-Em seu processo de Consulta Nomeada, você criará uma tabela de fatos simples para vendas combinando alguns atributos de configuração.
+Em seu processo de Named Query, você criará uma tabela de fatos simples para vendas combinando alguns atributos de configuração.
   
   
 # Tarefa 1: preparando o ambiente
   
-Nesta tarefa, você começará definindo o repostiry git para implantar seu NQ (Named Query), abra o `Git bash` instalado em seu sistema Windows ou abra o terminal se você estiver usando Linux e certifique-se de que está na pasta home de seu usuário. Você pode validar executando o seguinte comando:
+Nesta tarefa, você começa definindo o repositório git para implantar seu NQ (Named Query), abra o `Git bash` instalado em seu sistema Windows ou abra o terminal se você estiver usando Linux e certifique-se de que está na pasta home de seu usuário. Você pode validar executando o seguinte comando:
 
 ```shell
 pwd
@@ -187,7 +187,7 @@ mkdir -p training/platform/<your.name|random>
 
 # Tarefa 2: Criar Named Query
 
-Nesta tarefa, você definirá algumas etapas do NQ para criar uma tabela de fatos no Data Warehouse. Você extrairá dados do Athena e modelará a tabela em Redshift, você saberá na prática como cada escopo de consulta nomeada funciona.
+Nesta tarefa, você definirá algumas etapas do NQ para criar uma tabela de fatos no Data Warehouse. Você extrairá dados do Athena e irá modelar a tabela no Redshift, você saberá na prática como cada escopo de Named Query funciona.
 
 Abra seu editor de texto preferido e crie um arquivo com a seguinte consulta:
 
@@ -369,7 +369,7 @@ Agora você criará seu Job e o organizará no Assunto que criou no último Labo
 
 
 9. Defina `Named Query Folder` com o nome da pasta de seu NQ que você definiu na variável `<your.name|random>`
-(pasta contendo sua consulta nomeada)
+(pasta contendo sua Named Query)
 
 10. No campo `DAYS_GONE_TO_DATE` digite` 7`
 (Fim do intervalo delta para atualizar a tabela)
@@ -377,7 +377,7 @@ Agora você criará seu Job e o organizará no Assunto que criou no último Labo
 
 Nos outros campos você pode manter o valor padrão:
 
- **Target:** esta variável define onde o Glove irá criar a tabela com os resultados de cada passo da sua consulta nomeada, neste caso queremos criar as tabelas em Redshift, então você pode manter o valor padrão
+ **Target:** esta variável define onde o Glove irá criar a tabela com os resultados de cada passo da sua Named Query, neste caso queremos criar as tabelas em Redshift, então você pode manter o valor padrão
 
 13. Clique em `Add`, então deve adicionar um script de shell com os valores que você inseriu.
 Este script executa um processo Glove e executa seu NQ.

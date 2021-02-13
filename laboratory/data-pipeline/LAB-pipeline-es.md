@@ -7,8 +7,8 @@
 Después de completar esta práctica de laboratorio, sabrá cómo:
 
 - Usar la herramienta de versión git
-- Crear un proceso de consulta con nombre utilizando el módulo de consulta Glove
-- Implementar un proceso de consulta con nombre
+- Crear un proceso de Named Query utilizando el módulo query de Glove
+- Implementar un proceso de Named Query
 - Crear una canalización de datos en Hanger
 
 ### Duración
@@ -39,7 +39,7 @@ Le recomiendo que utilice su correo electrónico comercial para registrarse en g
 
 - **Git** es una herramienta de versión que puede usarse para rastrear todos los cambios en sus proyectos, puede tener muchas versiones de un archivo y administrar todos los cambios.
 
-- **Glove** es una herramienta de integración de datos que podemos usar para crear trabajos ETL, automatizar ejecuciones de scripts SQL y más. En este laboratorio, utilizaremos un módulo específico de Glove: consulta de módulo.
+- **Glove** es una herramienta de integración de datos que podemos usar para crear trabajos ETL, automatizar ejecuciones de scripts SQL y más. En este laboratorio, utilizaremos un módulo específico de Glove: módulo query.
 
 - **Hanger** es un servicio para la organización del flujo de trabajo, nos ayuda a automatizar, administrar, organizar y validar nuestros trabajos y flujos de trabajo.
 
@@ -48,7 +48,7 @@ Le recomiendo que utilice su correo electrónico comercial para registrarse en g
 
 
 
-En este laboratorio, usará la herramienta de versión git para controlar y aislar sus modificaciones en un repositorio de git (estaremos usando [Github](https://github.com/)). Creará un proceso de consulta con nombre y lo implementará utilizando git para ejecutarlo en Hanger with Glove utilizando la consulta del módulo. En Hanger, crea un Health Check para validar la integridad de su proceso.
+En este laboratorio, usará la herramienta de versión git para controlar y aislar sus modificaciones en un repositorio de git (estaremos usando [Github](https://github.com/)). Creará un proceso de Named Query y lo implementará utilizando git para ejecutarlo en Hanger con Glove utilizando módulo query. En Hanger, crea un Health Check para validar la integridad de su proceso.
 
 En su proceso de Consulta nombrada, creará una tabla de hechos simple para las ventas combinando algunos atributos de configuración.
 
@@ -188,9 +188,9 @@ mkdir -p training/platform/<your.name|random>
 
 > Para enumerar todas las ramas disponibles en su repositorio, ejecute el comando `git branch`
 
-# Tarea 2: Crear consulta con nombre
+# Tarea 2: Crear Named Query
 
-En esta tarea, establecerá algunos pasos NQ para crear una tabla de hechos en Data Warehouse. Extraerá datos de Athena y modelará la tabla en Redshift, sabrá en la práctica cómo funciona cada ámbito de consulta con nombre.
+En esta tarea, establecerá algunos pasos NQ para crear una tabla de hechos en Data Warehouse. Extraerá datos de Athena y modelará la tabla en Redshift, sabrá en la práctica cómo funciona cada ámbito de Named Query.
 
 Abra su editor de texto preferido y cree un archivo con la siguiente consulta:
 
@@ -473,13 +473,13 @@ Siéntete libre de explorar Hanger.
 
 # Conclusión
 
-Creó un proceso de consulta con nombre utilizando un módulo específico de integración de datos de Glove y realizó todas las configuraciones en Hanger con Health Check para validar la calidad de su proceso. Usó git y Github para realizar la implementación de su proceso y aislar todos sus cambios para evitar conflictos. ¡Felicidades!
+Creó un proceso de Named Query utilizando un módulo específico de integración de datos de Glove y realizó todas las configuraciones en Hanger con Health Check para validar la calidad de su proceso. Usó git y Github para realizar la implementación de su proceso y aislar todos sus cambios para evitar conflictos. ¡Felicidades!
 
 Ha aprendido con éxito cómo:
 
 - Configure su cuenta de Github para usar SSH
 - Use la herramienta de versión git para manipular sus modificaciones
-- Crear y configurar un proceso de consulta con nombre
+- Crear y configurar un proceso de Named Query
 - Crear y configurar un Job en Hanger
 - Agregue HealthChecks a su Job
 
