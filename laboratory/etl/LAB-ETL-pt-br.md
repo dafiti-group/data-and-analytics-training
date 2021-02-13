@@ -17,7 +17,7 @@ São necessários 40 minutos para completar esse laboratório
 
 ### Visão Geral
 
-Nesse laboratório você irá criar e executar processos ETL extraindo dados de 2 fontes diferentes para carregar em nosso data lake (AWS S3). Durante a execução os dados serão convertidos para arquivos Parquet* para que você tenha uma forma padronizada de acessar os dados através do Redshift Spectrum. Primeiro you vai executar um ETL manualmente para fixar o entendimento do conceito e então usar o Hanger para criar e cofigurar um Job Glove.
+Nesse laboratório você irá criar e executar processos ETL extraindo dados de 2 fontes diferentes para carregar em nosso data lake (AWS S3). Durante a execução os dados serão convertidos para arquivos Parquet* para que você tenha uma forma padronizada de acessar os dados através do Redshift Spectrum. Primeiro you vai executar um ETL manualmente para fixar o entendimento do conceito e então usar o Hanger para criar e configurar um Job Glove.
 
 > ***Parquet*** é um formato de arquivo colunar amplamente usado para armazenar dados no data lake ao invés de usar formatos de arquivos convencionais como CSV ou JSON. Como Parquet é colunar (os dados são lidos por coluna) você pode alcançar melhores performance nas consultas e redução de custo no final do mês se forem aplicadas as boas práticas.
 
@@ -66,10 +66,10 @@ success-page;Calidad del paquete;02-JUL-2020
 email;Tempo de troca/devolução;21-DEC-2020
 ```
 
-Agora no Redshift you vai criar uma tabela externa atravéz do `Redshift Spectrum` apontando para o arquivo no S3.
+Agora no Redshift você vai criar uma tabela externa através do `Redshift Spectrum` apontando para o arquivo no S3.
 Execute a query abaixo.
 
-> Repare que há algumas variáveis na query e você precisa altera-las, substitua ${YOUR_NAME} com seu nome ou apelido, substitua ${RANDOM} com alguns números aleatórios. **Use apenas letras minúsculas e anote e não esqueça os números aleatórios pois eles serão necesários mais algumas vezes**
+> Repare que há algumas variáveis na query e você precisa alterá-las, substitua ${YOUR_NAME} com seu nome ou apelido, substitua ${RANDOM} com alguns números aleatórios. **Use apenas letras minúsculas e anote e não esqueça os números aleatórios pois eles serão necessários mais algumas vezes**
 
 ```sql
 create external table spc_staging.${YOUR_NAME}_${RANDOM}_raw_nps_origin_type (
@@ -91,7 +91,7 @@ Você pode consultar a tabela para ver alguns dados:
 select * from spc_staging.${YOUR_NAME}_${RANDOM}_raw_nps_origin_type limit 100;
 ```
 
-Como você pode notar os dados poderiam ter uma aparência melhor, então agora you irá aplicar alguns tratamentos para isso. Agora que você consegue consultar os dados no arquivo CSV to é capaz de **E**xtrair, **T**ransformar e **L**oad (carregar) os dados.
+Como você pode notar os dados poderiam ter uma aparência melhor, então agora você irá aplicar alguns tratamentos para isso. Agora que você consegue consultar os dados no arquivo CSV to é capaz de **E**xtrair, **T**ransformar e **L**oad (carregar) os dados.
 
 ### Executando um ETL
 
@@ -100,13 +100,13 @@ O que você irá fazer nesse momento:
 - **Extract:**
 	-  Consultar a tabela externa para ler o arquivo CSV
 - **Transform:**
-	- Converter os dados para Parquet e aplicar algumas funções de tranformação
+	- Converter os dados para Parquet e aplicar algumas funções de transformação
 	- Adicionar um campo novo chamado `description_group` como uma forma de organização e categorização dos dados
 - **Load:** 
 	- Armazenar o novo arquivo covertido de volta para o S3 e criar uma nova tabela apontando para o dado tratado
 
 Execute o script a seguir, é o seu processo de ETL:
-> Note que há algumas varáveis na query e você de altera-las, you pode analizar o script antes de executar.
+> Note que há algumas variáveis na query e você de alterá-las, você pode analisar o script antes de executar.
 
 ```sql
 create table #transformation
@@ -245,13 +245,13 @@ Agora você vai criar seu próprio Job ETL e organizar no assunto que você crio
 (*Target* é o destino de armazenamento dos dados)
 
 9. Coloque `Output Table Schema` como `spc_staging`
-(Schema de destino do dados extraido)
+(Schema de destino dos dados extraídos)
 
-10. Coloque `Output Table Name` como `raw_nps_feedback_${YOUR_NAME}_${RANDOM}`. Dont't forget to change de variables*
+10. Coloque `Output Table Name` como `raw_nps_feedback_${YOUR_NAME}_${RANDOM}`. Não esqueça de substituir as variáveis*
 (Nome da tabela destino para guardar os dados extraídos)
 
 11. Coloque `Connection name` como `raw_nps` 
-(Referencia da conexão para acessar a fonte de dados)
+(Referência da conexão para acessar a fonte de dados)
 
 12. Coloque `Source Table Schema` como `public` 
 (Nome do schema na fonte de dados)
@@ -276,7 +276,7 @@ Os outros campos você pode manter o valor padrão:
 *`Success`:* Status que indica que seu Job finalizou sem erros
 
 
-> Se o seu Job receber alguns status diferente você pode clicar no ícone `?` que está no lado direito da tela para ver a descrição do significado de cada status.
+> Se o seu Job receber algum status diferente você pode clicar no ícone `?` que está no lado direito da tela para ver a descrição do significado de cada status.
 
 
 Após o Job estar concluído você pode tentar consultar a tabela extraída
@@ -320,4 +320,4 @@ Você aprendeu:
 - Adicionar dependências in em processo para automatização
 
 
-O glove possui muitas possibilidades para serem exploradas, você pode econtrar a documentação no [GitHub](https://github.com/dafiti-group/glove).
+O glove possui muitas possibilidades para serem exploradas, você pode encontrar a documentação no [GitHub](https://github.com/dafiti-group/glove).

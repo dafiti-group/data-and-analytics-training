@@ -6,8 +6,8 @@
 After completing this lab, you will know how to:
 
 - Do a simple ETL with SQL from user input file
-- Deal with some files formart
-- Create an automated ETL pocess with Glove
+- Deal with some files format
+- Create an automated ETL process with Glove
 - Create a simple data pipeline in Hanger
 
 ### Duration
@@ -20,7 +20,7 @@ In this lab you will create and run ETL processes extracting from 2 different so
   
 > ***Parquet*** is a columnar file format widely used to store data in data lake instead of using others common file formats such as csv or json. As parquet is columnar (read data by column) you can achieve best query performance and cost reduction in the end of month by applying good practices.
 
-> Another commum columnar file format similar to ***Parquet*** is the file format ***ORC***.
+> Another commun columnar file format similar to ***Parquet*** is the file format ***ORC***.
 
   
 # Starting Lab
@@ -68,7 +68,7 @@ email;Tempo de troca/devolução;21-DEC-2020
 
 Now in Redshift you will create an external table through `Redshift Spectrum` pointing to the file in S3.
 Run the query bellow.
-> Note there are some variables in the query you must change, replace ${YOUR_NAME} with your name ou nick name, and replace ${RANDOM} with some random numbers. **Use only lower case letters and don't forget the random number because you will use it sometimes**
+> Note there are some variables in the query you must change, replace ${YOUR_NAME} with your name or nickname, and replace ${RANDOM} with some random numbers. **Use only lower case letters and don't forget the random number because you will use it sometimes**
 
 ```sql
 create external table spc_staging.${YOUR_NAME}_${RANDOM}_raw_nps_origin_type (
@@ -185,7 +185,7 @@ In this task you will create a Job in Hanger Data Orchestration and set an ETL p
 
 Hanger works together with Glove to manage all processes flow to ensure execution order, data validation and more.
 
-You will extract the data from NPS system to be able to see the the customer rating.
+You will extract the data from the NPS system to be able to see the customer rating.
 
 ### Accessing Hanger
 
@@ -214,7 +214,7 @@ Before creating the Job you will explore some features of Hanger. One of them is
 
 3.  Click `Save`, the subject will be added
 
-### Create a Job and Cofigure ETL
+### Create a Job and Configure ETL
 
 Now you will create your ETL Job and organize in the Subject you have just created.
 
@@ -261,13 +261,13 @@ This script runs a Glove process and execute an ETL.
 
 15. In the end of the page click `Save` and then click `Build`
 
-Now your ETL job will be queued and executed, it may take a time to run and you can press `F5` to upate the page and validate the current job status. Your job may pass by 3 status:
+Now your ETL job will be queued and executed, it may take a time to run and you can press `F5` to update the page and validate the current job status. Your job may pass by 3 status:
 
 *`Building` or `Rebuilding`:* Means your Job is queued and waiting to run (the Job wait in the queue because of server limitation or dependencies block)
 *`Running`:* Means your Job is current in execution
 *`Success`:* Means your Job completed without any error
 
-> If your job receive any other different status you can click in the `?` icon in right side of the screen to see the description of each status.
+> If your job receives any other different status you can click on the `?` icon on right side of the screen to see the description of each status.
 
 After the job has completed you can try to query the table you extracted
 
@@ -293,7 +293,7 @@ In this task you will apply a new configuration to automate your ETL Job, and yo
 5. in the field `Jobs` find and select the job named `DATA-TRAINNING-ETL-GLOVE_raw_trigger_05hr`. Click `Add`
 
 
-You have just added a Job trigger to run automatically your ETL Job, you will notice that a new Job is connected to yours. Now your Job will be fired daily at 5 a.m by the trigger.
+You have just added a Job trigger to automatically run your ETL Job, you will notice that a new Job is connected to yours. Now your Job will be fired daily at 5 a.m by the trigger.
 
 
 # Conclusion
@@ -308,4 +308,4 @@ You have successfully learned how to:
 - Create and configure an ETL process with Glove
 - Add Parents to your Job for automation
 
-Glove has many possibilies to be explored, you can find the documentation in [GitHub](https://github.com/dafiti-group/glove). Avaliable only in portuguese currently.
+Glove has many possibilities to be explored, you can find the documentation in [GitHub](https://github.com/dafiti-group/glove). Available only in portuguese currently.

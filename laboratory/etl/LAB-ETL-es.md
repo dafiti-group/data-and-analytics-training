@@ -67,9 +67,9 @@ email;Tempo de troca/devolução;21-DEC-2020
 ```
 
 Ahora en Redshift creará una tabla externa a través del `Redshift Spectrum` apuntando al archivo en S3.
-Ejecute la consulta a abajo.
+Ejecute la consulta abajo.
 
-> Observe que hay algunas variables en la consulta y necesita cambiarlas, reemplace $ {YOUR_NAME} con su nombre o apodo, reemplace $ {RANDOM} con algunos números aleatorios. **Use solo letras minúsculas y escriba y no olvide los números aleatorios, ya que los necesitará unas cuantas veces más**
+> Observe que hay algunas variables en la consulta y necesita cambiarlas, reemplace $ {YOUR_NAME} con su nombre o apodo, reemplace $ {RANDOM} con algunos números aleatorios. **Use sólo letras minúsculas y escriba y no olvide los números aleatorios, ya que los necesitará unas cuantas veces más**
 
 ```sql
 create external table spc_staging.${YOUR_NAME}_${RANDOM}_raw_nps_origin_type (
@@ -320,4 +320,4 @@ Has aprendido:
 - Agregue dependencias en proceso para la automatización
 
 
-El Glove tiene muchas posibilidades por explorar, puede encontrar la documentación en [GitHub](https://github.com/dafiti-group/glove).
+El Glove tiene muchas posibilidades para explorar, puede encontrar la documentación en [GitHub](https://github.com/dafiti-group/glove).
