@@ -223,9 +223,9 @@ Você aprendeu com sucesso como:
 
 ## Solução do desafio - Tarefa 2
 
-In the query below you can notice the suitable changes to improve performance.
+Na consulta abaixo você pode notar as mudanças adequadas para melhorar o desempenho.
 
-> Always remember to replace the variables
+> Lembre-se sempre de substituir as variáveis
 ```sql
 explain
 select
