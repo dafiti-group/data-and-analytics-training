@@ -49,7 +49,7 @@ In this task you will first create the tables to test and populate them. You wil
 
 Here you can find the documentation about [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) and [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) commands.
 
-Run the script below to craete and populate the tables. Analize the script to better undertand the commands if you want.
+Run the script below to create and populate the tables. Analyze the script to better understand the commands if you want.
 
 > Notice that you have some variables to replace in the script. Replace the variable `<your_name>` with your name or nickname, and replace the variable `<random>` wirth some random numbers. **Use only lower case letters and don't forget the random numbera because you will use it sometimes**
 
@@ -141,7 +141,7 @@ The execution plan determine somethings like:
 
 - The best possible join algorithm to use
 - If needed, how data should be redistributed
-- The best order of tables in `join` (yes, Redshift may change the order tables are joined internaly)
+- The best order of tables in `join` (yes, Redshift may change the order tables are joined internally)
 
 The matter for us in this moment in the topic 2: data redistribution. You can see how data is redistributed in a query in the execution plan, but how can you get the execution plan? In your query use the command `explain`.
 
@@ -161,7 +161,7 @@ and date(s.order_date) = '2021-02-13'
 group by 1
 ;
 ```
-You Shoud receive a messy output similar to this (the execution plan):
+You should receive a messy output similar to this (the execution plan):
 
 ```
 ```
@@ -174,17 +174,43 @@ You can understand better the meaning of each type of redistribution [here](http
 We always want to achieve `DS_DIST_NONE` and `DS_DIST_ALL_NONE`, if no redistribution is needed then the query will perform better.
 
 
-**?Challange:** Now based on the knowledge you have about `Diststyle` and `Sortkey` in Redshift, make the necessary changes in the query to improve performance and achieve `DS_DIST_NONE` in the execution plan. *The answare for this challenge is in the end of this lab, if you want you can go there and validate your solution :)*
+**?Challenge:** Now based on the knowledge you have about `Diststyle` and `Sortkey` in Redshift, make the necessary changes in the query to improve performance and achieve `DS_DIST_NONE` in the execution plan. *The answear for this challenge is in the end of this lab, if you want you can go there and validate your solution :)*
 
 # Task 3: Trying Different Join Combinations
 
-In this task you will analize the 
+In this quick task you will analyze a query to identify a different redistribution behavior.
 
-**?Challange:** Write a simple query joining the 3 tables you have created in this lab appling the best practices you have  learned. Count the items and orders grouped by current status and flag `is_paid` (you have to create this flag) filtering only 3 hours of a specific day, when you run the `explain` command no redistribution should be shown. *The answare for this challenge is in the end of this lab, if you want you can go there and validate your solution :)*
+```sql
+explain
+select
+st.status_name
+, date(s.order_date) as order_date
+, count(s.id_item) as item_qty
+, count(distinct s.fk_order) as order_qty
+from staging.<your_name>_<random>_item_sold as s
+inner join staging.<your_name>_<random>_status as st on st.id_status = s.fk_current_status
+group by 1,2
+;
+```
+
+Note the key your are using to join the tables, it's not a distkety but you don't have a redistribution. You have in your execution plan `DS_DIST_ALL_NONE`, it's because one of the tables has `Diststyle all`, tables with this distribution perform well in joins with tables using Diststyle `KEY` or `EVEN`.
+
+**?Challenge:** Write a simple query joining the 3 tables you have created in this lab appling the best practices you have  learned. Count the items and orders grouped by current status and flag `is_paid` (you have to create this flag) filtering only 3 hours of a specific day, when you run the `explain` command no redistribution should be shown. *The answear for this challenge is in the end of this lab, if you want you can go there and validate your solution :)*
 
 # Conclusion
 
-## Challange Solution Task 2
+You created some tables in Redshift defining Diststyle and sortkey, loaded data from S3 to populate your tables using the `COPY` command, compressed the data using the command `encode` to improve performance the storage, you analyzed the execution plan of your query and improved performance based on information about data redistribution. Congratulations!
+
+You have successfuly learned how to:
+- Use `copy` command to load data from S3 into Redshift
+- Improve your query by compressing data
+- Define and use Diststyle and Sortkey
+- Interpret the execution plan of your query
+
+
+# Challenges
+
+## Challenge Solution Task 2
 
 In the query below you can notice the suitable changes to improve performance.
 
@@ -208,7 +234,7 @@ First of all the distkey of both tables has been added in the `join` statement, 
 The second change was the filter, now the column in the filer doesn't suffer any transformation, this way Redshift can use the power of Sortkey. Unfortunately there isn't a easy way to indentify performance improvement related to Sortkey in the execution plan because Redshift will only know what data blocks to skip in the runtime.
 
 
-## Challange Solution Task 3
+## Challenge Solution Task 3
 
 
 If you run the query below you will notice that there isn't data redistribution, and it's so good.
@@ -230,4 +256,4 @@ group by 1,2
 ;
 ```
 
-For the filter a random period of 3 hours was chosen, and the join was made based on the content of this Lab.
+For the filter a random period of 3 hours was chosen, and the join was made based on the content covered in this Lab.
