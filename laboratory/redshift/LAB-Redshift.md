@@ -164,6 +164,17 @@ group by 1
 You should receive a messy output similar to this (the execution plan):
 
 ```
+XN HashAggregate  (cost=2739041021.68..2739041022.46 rows=156 width=48)
+  ->  XN Subquery Scan volt_dt_0  (cost=2739041018.56..2739041020.51 rows=156 width=48)
+        ->  XN HashAggregate  (cost=2739041018.56..2739041018.95 rows=156 width=24)
+              ->  XN Hash Right Join DS_DIST_BOTH  (cost=467.74..2739041017.39 rows=156 width=24)
+                    Outer Dist Key: p.fk_item
+                    Inner Dist Key: s.id_item
+                    Hash Cond: ("outer".fk_item = "inner".id_item)
+                    ->  XN Seq Scan on gui_1425_item_paid p  (cost=0.00..168.85 rows=16885 width=8)
+                    ->  XN Hash  (cost=467.35..467.35 rows=156 width=16)
+                          ->  XN Seq Scan on gui_1425_item_sold s  (cost=0.00..467.35 rows=156 width=16)
+                                Filter: (date(order_date) = '2021-02-13'::date)
 ```
 There are many information in this result, if you want to know the meaning of each element in this execution plan see the documentation about [EXPLAIN](https://docs.aws.amazon.com/redshift/latest/dg/r_EXPLAIN.html).
 
@@ -195,7 +206,7 @@ group by 1,2
 
 Note the key your are using to join the tables, it's not a distkety but you don't have a redistribution. You have in your execution plan `DS_DIST_ALL_NONE`, it's because one of the tables has `Diststyle all`, tables with this distribution perform well in joins with tables using Diststyle `KEY` or `EVEN`.
 
-**?Challenge:** Write a simple query joining the 3 tables you have created in this lab appling the best practices you have  learned. Count the items and orders grouped by current status and flag `is_paid` (you have to create this flag) filtering only 3 hours of a specific day, when you run the `explain` command no redistribution should be shown. *The answear for this challenge is in the end of this lab, if you want you can go there and validate your solution :)*
+**?Challenge:** Write a simple query joining the 3 tables you have created in this lab appling the best practices you have  learned. Count the items and orders grouped by current status and flag `is_paid` (you have to create this flag) filtering only 3 hours of a specific day (the data in your tables are between 2021-02-13 18:00:00 and 2021-02-14 06:00:00), when you run the `explain` command no redistribution should be shown. *The answear for this challenge is in the end of this lab, if you want you can go there and validate your solution :)*
 
 # Conclusion
 
@@ -231,7 +242,7 @@ group by 1
 
 First of all the distkey of both tables has been added in the `join` statement, although the join is by the id of item the tables are distributed by the id of oder, this way you can use distkey to join tables of different granularities without producing cartesian product. When we use the Distkey in `join` we say where the data is stored and Redshift does not lost time rearranging the data.
 
-The second change was the filter, now the column in the filer doesn't suffer any transformation, this way Redshift can use the power of Sortkey. Unfortunately there isn't a easy way to indentify performance improvement related to Sortkey in the execution plan because Redshift will only know what data blocks to skip in the runtime.
+The second change was the filter, now the column in the filter doesn't suffer any transformation, this way Redshift can use the power of Sortkey. Unfortunately there isn't a easy way to indentify performance improvement related to Sortkey in the execution plan because Redshift will only know what data blocks to skip in the runtime.
 
 
 ## Challenge Solution Task 3
@@ -257,3 +268,5 @@ group by 1,2
 ```
 
 For the filter a random period of 3 hours was chosen, and the join was made based on the content covered in this Lab.
+
+Notice the table `status` is first table joined but in the result of `explain` command the join appers after the join with item_paid, it doesn't mean Redshift changed the order of tables in join necessarly, but the joins in the execution plan are show bottom-up.

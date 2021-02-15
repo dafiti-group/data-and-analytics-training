@@ -2,7 +2,7 @@
 
 ### Objetivo
 
-Depois de concluir este laboratório, você saberá como:
+Após concluir este laboratório, você saberá como:
 
 - Interpretar o plano de execução da sua consulta no Redshift
 - Definir e usar Diststyle e Sortkey em sua tabela
@@ -136,14 +136,14 @@ EXPLICIT_IDS
 # Tarefa 2: O Plano de Execução
 
 Agora que você tem os dados em suas tabelas vamos entender como o Redshift lida com os dados, para isso é preciso analisar o plano de execução criado pelo banco de dados para executar uma consulta.
-Quando você envia uma consulta ao Redshift, seu código é analisado e baseado em que um script interno é gerado, esse script contém informações sobre as etapas que o Redshift deve realizar para executar sua consulta da melhor maneira possível. Este script interno é o plano de execução, cada vez que você envia uma consulta, um novo plano de execução é criado.
+Quando você envia uma consulta ao Redshift, seu código é analisado e baseado nisso um script interno é gerado, esse script contém informações sobre as etapas que o Redshift deve realizar para executar sua consulta da melhor maneira possível. Este script interno é o plano de execução, cada vez que você envia uma consulta, um novo plano de execução é criado.
 O plano de execução determina coisas como:
 
 - O melhor algoritmo de junção possível para usar
 - Se necessário, como os dados devem ser redistribuídos
 - A melhor ordem das tabelas no `join` (sim, o Redshift pode alterar a ordem das tabelas dispostas no join internamente)
 
-A questão para nós neste momento no tópico 2: redistribuição de dados. Você pode ver como os dados são redistribuídos em uma consulta no plano de execução, mas como obter o plano de execução? Em sua consulta, use o comando `explain`.
+A questão para nós neste momento é o tópico 2: redistribuição de dados. Você pode ver como os dados são redistribuídos em uma consulta no plano de execução, mas como obter o plano de execução? Em sua consulta, use o comando `explain`.
 
 Execute o código abaixo:
 
@@ -164,6 +164,17 @@ group by 1
 Você deve receber uma saída confusa semelhante a esta (o plano de execução):
 
 ```
+XN HashAggregate  (cost=2739041021.68..2739041022.46 rows=156 width=48)
+  ->  XN Subquery Scan volt_dt_0  (cost=2739041018.56..2739041020.51 rows=156 width=48)
+        ->  XN HashAggregate  (cost=2739041018.56..2739041018.95 rows=156 width=24)
+              ->  XN Hash Right Join DS_DIST_BOTH  (cost=467.74..2739041017.39 rows=156 width=24)
+                    Outer Dist Key: p.fk_item
+                    Inner Dist Key: s.id_item
+                    Hash Cond: ("outer".fk_item = "inner".id_item)
+                    ->  XN Seq Scan on gui_1425_item_paid p  (cost=0.00..168.85 rows=16885 width=8)
+                    ->  XN Hash  (cost=467.35..467.35 rows=156 width=16)
+                          ->  XN Seq Scan on gui_1425_item_sold s  (cost=0.00..467.35 rows=156 width=16)
+                                Filter: (date(order_date) = '2021-02-13'::date)
 ```
 Existem muitas informações neste resultado, se você deseja saber o significado de cada elemento neste plano de execução consulte a documentação sobre [EXPLAIN](https://docs.aws.amazon.com/redshift/latest/dg/r_EXPLAIN.html).
 
@@ -195,7 +206,7 @@ group by 1,2
 
 Observe a chave que você está usando para juntar as tabelas, não é um distkety, mas você não tem uma redistribuição. Você tem em seu plano de execução `DS_DIST_ALL_NONE`, é porque uma das tabelas tem `Diststyle all`, tabelas com esta distribuição funcionam bem em joins com tabelas usando Diststyle `KEY` ou `EVEN`.
 
-**?Desafio:** Escreva uma consulta simples juntando as 3 tabelas que você criou neste laboratório, aplicando as melhores práticas que você aprendeu. Conte os itens e pedidos agrupados pelo status atual e flag `is_paid` (você tem que criar esta flag) filtrando apenas 3 horas de um dia específico, quando você executa o comando `explain` nenhuma redistribuição deve ser mostrada. *A resposta para este desafio está no final deste laboratório, se você quiser, pode ir lá e validar sua solução:)*
+**?Desafio:** Escreva uma consulta simples juntando as 3 tabelas que você criou neste laboratório, aplicando as melhores práticas que você aprendeu. Conte os itens e pedidos agrupados pelo status atual e flag `is_paid` (você tem que criar esta flag) filtrando apenas 3 horas de um dia específico (os dados nas suas tabelas estão entre 2021-02-13 18:00:00 e 2021-02-14 06:00:00), quando você executar o comando `explain` nenhuma redistribuição deve ser mostrada. *A resposta para este desafio está no final deste laboratório, se você quiser, pode ir lá e validar sua solução:)*
 
 # Conclusão
 
@@ -229,9 +240,9 @@ group by 1
 ;
 ```
 
-First of all the distkey of both tables has been added in the `join` statement, although the join is by the id of item the tables are distributed by the id of oder, this way you can use distkey to join tables of different granularities without producing cartesian product. When we use the Distkey in `join` we say where the data is stored and Redshift does not lost time rearranging the data.
+Em primeiro lugar, a distkey de ambas as tabelas foram adicionadas à instrução `join`, embora a junção seja pelo id do item, as tabelas são distribuídas pelo id do pedido (fk_order), desta forma você pode usar distkey para juntar tabelas de diferentes granularidades sem causar produtos cartesianos. Quando usamos a Distkey no `join` dizemos onde os dados estão armazenados e o Redshift não perde tempo reorganizando os dados.
 
-The second change was the filter, now the column in the filer doesn't suffer any transformation, this way Redshift can use the power of Sortkey. Unfortunately there isn't a easy way to indentify performance improvement related to Sortkey in the execution plan because Redshift will only know what data blocks to skip in the runtime.
+A segunda mudança foi o filtro, agora a coluna no filtro não sofre nenhuma transformação, desta forma o Redshift pode usar o poder da Sortkey. Infelizmente, não há uma maneira fácil de identificar a melhoria de desempenho relacionada à Sortkey no plano de execução porque o Redshift só saberá quais blocos de dados pular no tempo de execução.
 
 
 ## Solução do desafio - Tarefa 3
@@ -257,3 +268,5 @@ group by 1,2
 ```
 
 Para o filtro foi escolhido um período aleatório de 3 horas, no `join` foi feita com base no conteúdo abordado neste Laboratório.
+
+Observe que a tabela `status` é a primeira tabela no join, mas no resultado do comando `explain` a junção aparece após a junção com item_paid, isso não significa que o Redshift mudou a ordem das tabelas no join necessariamente, mas as junções no plano de execução são mostrados de baixo para cima.
