@@ -17,6 +17,6 @@
 
 ## 3. Redshift
 
-- [English](redshift/LAB-redshift.md)
-- [Portugês](redshift/LAB-redshift-pt-br.md)
-- [Español](redshift/LAB-redshift-es.md)
+- [English](redshift/LAB-Redshift.md)
+- [Portugês](redshift/LAB-Redshift-pt-br.md)
+- [Español](redshift/LAB-Redshift-es.md)
