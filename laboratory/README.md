@@ -13,3 +13,10 @@
 - [English](data-pipeline/LAB-pipeline.md)
 - [Portugês](data-pipeline/LAB-pipeline-pt-br.md)
 - [Español](data-pipeline/LAB-pipeline-es.md)
+
+
+## 3. Redshift
+
+- [English](redshift/LAB-redshift.md)
+- [Portugês](redshift/LAB-redshift-pt-br.md)
+- [Español](redshift/LAB-redshift-es.md)
