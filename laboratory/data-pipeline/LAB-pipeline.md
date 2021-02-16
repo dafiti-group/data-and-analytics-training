@@ -136,6 +136,8 @@ Now you have a SSH key configured in your account for security.
 
 Let's create a folder to host the cloned repository, run the command below:
 
+> **Important:** Depending on the configuration of your computer and the program installed, the `Documents` folder may appear in another language in the git terminal as in the command below that is in English, check in which language git is identifying the folders and make changes to the command if necessary. To identify the correct folder name (`Documents` or` Documentos`) use the `ls -l` command to list the folders in your current directory and find the documents folder.
+
 ```shell
 mkdir -p Documents/training_repo;cd Documents/training_repo;pwd
 ```
@@ -188,7 +190,7 @@ mkdir -p training/platform/<your.name|random>
 
 # Task 2: Create Named Query
 
-In this task you will set some NQ steps to to create a fact table in Data Warehouse. You will extract data from Athena and model the table in Redshift, you will know in practice how each scope of named query works.
+In this task you will set some NQ steps to to create a fact table in Data Lake (the ideal would be to create in the Data Warehouse, but for didactic purposes we will use a different approach). You will extract data from Athena and model the table in Redshift, you will know in practice how each scope of named query works.
 
 Open your preferred text editor and create a file with the following query:
 
@@ -257,13 +259,13 @@ In the same folder in your repository, save the file with the following name:
 `2.spc_business_layer.fact_sales_training_<your-name>_<random>.redshift.partition.sql`
 
 ---
-Basically when Glove run those 2 steps, the execution of the first file will query Amazon Athena and the result will be used to create a table in Redshift, the name of the table will be what you defined in the file name, in this case it will be:
+Basically when Glove run those 2 steps, the execution of the first file will query Amazon Athena and the result will be used to create a table in Spectrum, the name of the table will be what you defined in the file name, in this case it will be:
 
 `spc_staging.fact_sales_delta_load_<your-name>_<random>`
 
 Always the process runs the data of this table will be replaced with the new data because the scope of this step is `full`, the data will be `full` replaced.
 
-The execution of the second file will query the table created by the previous step through Redshift and the result will be used to craete the fact table in Redshift. The name of the table will be what you defined in the file name, in this case it will be:
+The execution of the second file will query the table created by the previous step through Redshift and the result will be used to craete the fact table in Spectrum. The name of the table will be what you defined in the file name, in this case it will be:
 
 `spc_business_layer.fact_sales_training_<your-name>_<random>`
 
@@ -376,7 +378,7 @@ Now you will create your Job and organize in the Subject you created in the last
 
 The others fields you can keep the default value:
 
- **Target:** this variable defines where Glove will create the table with the results of each step of your named query, in this case we want to create the tables in Redshift, so you can keep the default value
+ **Target:** this variable defines where Glove will create the table with the results of each step of your named query, in this case we want to create the tables in Spectrum (S3), so you can keep the default value
 
 13. Click `Add`, then it should add a shell script with values you inserted.
 This script runs a Glove process and execute your NQ.

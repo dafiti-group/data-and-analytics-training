@@ -50,7 +50,7 @@ Le recomiendo que utilice su correo electrónico comercial para registrarse en g
 
 En este laboratorio, usará la herramienta de versión git para controlar y aislar sus modificaciones en un repositorio de git (estaremos usando [Github](https://github.com/)). Creará un proceso de Named Query y lo implementará utilizando git para ejecutarlo en Hanger con Glove utilizando módulo query. En Hanger, crea un Health Check para validar la integridad de su proceso.
 
-En su proceso de Consulta nombrada, creará una tabla de hechos simple para las ventas combinando algunos atributos de configuración.
+En su proceso de Consulta nombrada, creará una fact table simple para las ventas combinando algunos atributos de configuración.
 
 
 # Tarea 1: Preparar el entorno
@@ -138,6 +138,8 @@ Ahora tiene una clave SSH configurada en su cuenta por seguridad.
 
 Creemos una carpeta para alojar el repositorio clonado, ejecute el siguiente comando:
 
+> **Importante:** Dependiendo de la configuración de su computadora y del programa instalado, la carpeta `Documentos` puede aparecer en otro idioma en el terminal git como en el comando a continuación que está en inglés, verifique en qué idioma git está identificando las carpetas y realice cambios en el comando si es necesario. Para identificar el nombre correcto de la carpeta (`Documents` o` Documentos`) use el comando` ls -l` para listar las carpetas en su directorio actual y encontrar la carpeta de documentos.
+
 ```shell
 mkdir -p Documents/training_repo;cd Documents/training_repo;pwd
 ```
@@ -190,7 +192,7 @@ mkdir -p training/platform/<your.name|random>
 
 # Tarea 2: Crear Named Query
 
-En esta tarea, establecerá algunos pasos NQ para crear una tabla de hechos en Data Warehouse. Extraerá datos de Athena y modelará la tabla en Redshift, sabrá en la práctica cómo funciona cada ámbito de Named Query.
+En esta tarea, establecerá algunos pasos NQ para crear una fact table en Data Lake (lo ideal sería crear en el Data Warehouse, pero con fines didácticos usaremos un enfoque diferente). Extraerá datos de Athena y modelará la tabla en Redshift, sabrá en la práctica cómo funciona cada ámbito de Named Query.
 
 Abra su editor de texto preferido y cree un archivo con la siguiente consulta:
 
@@ -259,13 +261,13 @@ En la misma carpeta de su repositorio, guarde el archivo con el siguiente nombre
 `2.spc_business_layer.fact_sales_training_<your-name>_<random>.redshift.partition.sql`
 
 ---
-Básicamente cuando Glove ejecute esos 2 pasos, la ejecución del primer archivo consultará a Amazon Athena y el resultado se usará para crear una tabla en Redshift, el nombre de la tabla será el que definiste en el nombre del archivo, en este caso estarán:
+Básicamente cuando Glove ejecute esos 2 pasos, la ejecución del primer archivo consultará a Amazon Athena y el resultado se usará para crear una tabla en Spectrum, el nombre de la tabla será el que definiste en el nombre del archivo, en este caso estarán:
 
 `spc_staging.fact_sales_delta_load_<your-name>_<random>`
 
 Siempre que se ejecute el proceso, los datos de esta tabla se reemplazarán con los nuevos datos porque el alcance de este paso es `full`, los datos se reemplazarán `completo`.
 
-La ejecución del segundo archivo consultará la tabla creada por el paso anterior a través de Redshift y el resultado se utilizará para crear la tabla de hechos en Redshift. El nombre de la tabla será el que definiste en el nombre del archivo, en este caso será:
+La ejecución del segundo archivo consultará la tabla creada por el paso anterior a través de Redshift y el resultado se utilizará para crear la fact_table en Spectrum. El nombre de la tabla será el que definiste en el nombre del archivo, en este caso será:
 
 `spc_business_layer.fact_sales_training_<your-name>_<random>`
 
@@ -378,7 +380,7 @@ Ahora creará su trabajo y lo organizará en el tema que creó en el último lab
 
 Los otros campos puede mantener el valor predeterminado:
 
- **Target:** esta variable define dónde Glove creará la tabla con los resultados de cada paso de su consulta nombrada, en este caso queremos crear las tablas en Redshift, para que pueda mantener el valor predeterminado
+ **Target:** esta variable define dónde Glove creará la tabla con los resultados de cada paso de su consulta nombrada, en este caso queremos crear las tablas en Spectrum (S3), para que pueda mantener el valor predeterminado
 
 13. Click `Add`, entonces debería agregar un script de shell con los valores que insertó.
 Este script ejecuta un proceso Glove y ejecuta su NQ.

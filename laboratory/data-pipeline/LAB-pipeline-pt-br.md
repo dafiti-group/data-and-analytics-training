@@ -135,6 +135,8 @@ Agora você tem uma chave SSH configurada em sua conta para segurança.
 
 Vamos criar uma pasta para hospedar o repositório clonado, execute o comando abaixo:
 
+> **Importante:** Dependendo da configuração do seu computador e do programa instalado a pasta `Documentos` pode aparecer em outro idioma no terminal do git como no comando abaixo que está em inglês, verifique em qual idioma o git está identificando as pastas e faça as alterações no comando caso seja necessário. Para identificar o nome correto da pasta (`Documents` ou `Documentos`) use o comando `ls -l` para listar as pastas no seu diretório atual e encontar a pasta de documentos.
+
 ```shell
 mkdir -p Documents/training_repo;cd Documents/training_repo;pwd
 ```
@@ -187,7 +189,7 @@ mkdir -p training/platform/<your.name|random>
 
 # Tarefa 2: Criar Named Query
 
-Nesta tarefa, você definirá algumas etapas do NQ para criar uma tabela de fatos no Data Warehouse. Você extrairá dados do Athena e irá modelar a tabela no Redshift, você saberá na prática como cada escopo de Named Query funciona.
+Nesta tarefa, você definirá algumas etapas do NQ para criar uma tabela de fatos no Data Lake (o ideal seria criar no Data Warehouse, mas para fins didáticos usaremos uma abordagem diferente). Você extrairá dados do Athena e irá modelar a tabela no Redshift, você saberá na prática como cada escopo de Named Query funciona.
 
 Abra seu editor de texto preferido e crie um arquivo com a seguinte consulta:
 
@@ -256,13 +258,13 @@ Na mesma pasta do seu repositório, salve o arquivo com o seguinte nome:
 `2.spc_business_layer.fact_sales_training_<your-name>_<random>.redshift.partition.sql`
 
 ---
-Basicamente quando o Glove executa essas 2 etapas, a execução do primeiro arquivo irá consultar o Amazon Athena e o resultado será usado para criar uma tabela no Redshift, o nome da tabela será o que você definiu no nome do arquivo, neste caso será:
+Basicamente quando o Glove executa essas 2 etapas, a execução do primeiro arquivo irá consultar o Amazon Athena e o resultado será usado para criar uma tabela no Spectrum, o nome da tabela será o que você definiu no nome do arquivo, neste caso será:
 
 `spc_staging.fact_sales_delta_load_<your-name>_<random>`
 
 Sempre que o processo for executado, os dados desta tabela serão substituídos pelos novos dados, pois o escopo desta etapa é `full`, os dados serão substituídos `full (completamente)`.
 
-A execução do segundo arquivo consultará a tabela criada pela etapa anterior por meio do Redshift e o resultado será usado para criar a tabela de fatos no Redshift. O nome da tabela será o que você definiu no nome do arquivo, neste caso será:
+A execução do segundo arquivo consultará a tabela criada pela etapa anterior por meio do Redshift e o resultado será usado para criar a tabela fato no Spectrum. O nome da tabela será o que você definiu no nome do arquivo, neste caso será:
 
 `spc_business_layer.fact_sales_training_<your-name>_<random>`
 
@@ -377,7 +379,7 @@ Agora você criará seu Job e o organizará no Assunto que criou no último Labo
 
 Nos outros campos você pode manter o valor padrão:
 
- **Target:** esta variável define onde o Glove irá criar a tabela com os resultados de cada passo da sua Named Query, neste caso queremos criar as tabelas em Redshift, então você pode manter o valor padrão
+ **Target:** esta variável define onde o Glove irá criar a tabela com os resultados de cada passo da sua Named Query, neste caso queremos criar as tabelas no Spectrum (S3), então você pode manter o valor padrão
 
 13. Clique em `Add`, então deve adicionar um script de shell com os valores que você inseriu.
 Este script executa um processo Glove e executa seu NQ.
