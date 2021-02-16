@@ -445,7 +445,7 @@ select * from spc_business_layer.fact_sales_training_<your-name>_<random> limit 
 
 Ahora para validar el comportamiento de su proceso lo volverá a ejecutar pero cambiando los valores de algunas variables, haga clic en el nombre de su Trabajo, al final de la página haga clic en `Edit`.
 
-En el script de shell hay 2 variables en las primeras 2 líneas, `DAYS_GONE_FROM_DATE` y `DAYS_GONE_TO_DATE`, cambie los valores de esas 2 variables a `7` y` 0` respectivamente.
+En el script de shell hay 2 variables en las primeras 2 líneas, `DAYS_GONE_FROM_DATE` y `DAYS_GONE_TO_DATE`, cambie los valores de esas 2 variables a `7` y `0` respectivamente.
 
 Al final de la página, haga clic en `Save` y luego haga clic en `Build`
 
