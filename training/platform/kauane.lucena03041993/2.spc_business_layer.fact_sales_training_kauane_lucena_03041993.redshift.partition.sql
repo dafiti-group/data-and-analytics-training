@@ -17,5 +17,5 @@ select
 , coalesce(cart_discount_value, 0) 					as cart_discount_value
 , coalesce(gross_shipping_chaged_to_customer, 0) 	as gross_shipping_chaged_to_customer
 , coalesce(gross_merchandise_value, 0) + coalesce(gross_shipping_chaged_to_customer, 0) as gross_total_value
-from spc_staging.fact_sales_delta_load_<your-name>_<random>
+from spc_staging.fact_sales_delta_load_kauane_lucena_03041993
 ;
