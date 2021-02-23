@@ -298,7 +298,7 @@ Nessa tarefa você irá aplicar uma configuração em seu Job ETL para automatiz
 
 2. Clique no nome do assunto (`Subject`) que você criou anteriormente, e então seu job deve aparecer
 
-3. Clique in the button `Flow`
+3. Clique no botão `Flow`
 
 4. Clique com o botão direito no seu Job, selecione `= Actions` > `+ Parent`, selecione `DEV`
 
