@@ -359,7 +359,7 @@ Now you will create your Job and organize in the Subject you created in the last
 
 3. In the field `Template` make sure the selected value is `TEMPLATE_EMPTY`
 
-4. in the field `Name` name as `Trial-Trainning-${YOUR_NAME}-GLOVE_NQ_fact_sales` (don't forget to replace the variable)
+4. in the field `Name` name as `Trial-Training-${YOUR_NAME}-GLOVE_NQ_fact_sales` (don't forget to replace the variable)
 
 5.  Click `>> Next`
 

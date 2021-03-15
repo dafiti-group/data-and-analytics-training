@@ -224,7 +224,7 @@ Now you will create your ETL Job and organize in the Subject you have just creat
 
 3. In the field `Template` make sure the selected value is `TEMPLATE_EMPTY`
 
-4. in the field `Name` name as `Trial-Trainning-${YOUR_NAME}-Glove_raw_nps_feedback` (don't forget to replace the variable)
+4. in the field `Name` name as `Trial-Training-${YOUR_NAME}-Glove_raw_nps_feedback` (don't forget to replace the variable)
 
 5.  Click `>> Next`
 
