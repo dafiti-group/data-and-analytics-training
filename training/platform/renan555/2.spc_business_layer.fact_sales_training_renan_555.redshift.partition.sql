@@ -18,4 +18,5 @@ select
 , coalesce(gross_shipping_chaged_to_customer, 0) 	as gross_shipping_chaged_to_customer
 , coalesce(gross_merchandise_value, 0) + coalesce(gross_shipping_chaged_to_customer, 0) as gross_total_value
 from spc_staging.fact_sales_delta_load_renan_555
+
 ;
