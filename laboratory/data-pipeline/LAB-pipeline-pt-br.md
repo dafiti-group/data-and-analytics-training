@@ -360,7 +360,7 @@ Agora você criará seu Job e o organizará no Assunto que criou no último Labo
 
 3. No campo `Template` verifique se o valor selecionado é` TEMPLATE_EMPTY`
 
-4. no campo `Name` nome como` Trial-Trainning-${YOUR_NAME}-GLOVE_NQ_fact_sales` (não se esqueça de substituir a variável)
+4. no campo `Name` nome como` Trial-Training-${YOUR_NAME}-GLOVE_NQ_fact_sales` (não se esqueça de substituir a variável)
 
 5. clique `>> Next`
 

@@ -232,7 +232,7 @@ Agora você vai criar seu próprio Job ETL e organizar no assunto que você crio
 
 3. No campo `Template` garanta que o valor selecionado seja `TEMPLATE_EMPTY`
 
-4. No campo `Name` nomeie o Job como `Trial-Trainning-${YOUR_NAME}-Glove_raw_nps_feedback` (não esqueça de substituir a variável)
+4. No campo `Name` nomeie o Job como `Trial-Training-${YOUR_NAME}-Glove_raw_nps_feedback` (não esqueça de substituir a variável)
 
 5. Clique em `>> Next`
 
