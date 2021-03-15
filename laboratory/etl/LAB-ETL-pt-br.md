@@ -106,7 +106,7 @@ O que você irá fazer nesse momento:
 	- Armazenar o novo arquivo covertido de volta para o S3 e criar uma nova tabela apontando para o dado tratado
 
 Execute o script a seguir, é o seu processo de ETL:
-> Note que há algumas variáveis na query e você de alterá-las, você pode analisar o script antes de executar.
+> Note que há algumas variáveis na query e você deve alterá-las, você pode analisar o script antes de executar.
 
 ```sql
 create table #transformation
