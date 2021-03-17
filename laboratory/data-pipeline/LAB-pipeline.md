@@ -396,7 +396,7 @@ This script runs a Glove process and execute your NQ.
 >  Remember to replace the variables with the same values you used to define the file name of your NQ
 ```sql
 select
-max(abs((1 - (b.gmv / a.gmv)) * 100)) as check_
+max(abs(((b.gmv / a.gmv) - 1) * 100)) as check_
 from (
 	 select
 	 to_char(cast(so.created_at as timestamp), 'YYYYMMDD')::bigint as id_date
