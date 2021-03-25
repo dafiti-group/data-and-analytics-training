@@ -29,7 +29,7 @@ En este laboratorio, creará y ejecutará procesos ETL extrayendo datos de 2 fue
 Para completar este laboratorio, debe estar conectado a la VPN para acceder a los recursos necesarios.
 En su Workbench (que usa con frecuencia para acceder a Redshift) cree una nueva conexión para Redshift con las siguientes credenciales.
 
-**Host:** `bi-dafiti-group-dc2-dev.cofscmejxic8.us-east-1.redshift.amazonaws.com`
+**Host:** `172.18.3.210`
 
 
 **Port:** `5439`
@@ -197,7 +197,7 @@ Extraerá datos del sistema NPS para poder ver las notas del cliente.
 ### Acceso a Hanger
 
 1. Acceda al enlace de abajo para acceder a la aplicación Hanger
-[http://hanger-dev.dafiticorp.com:8080/hanger/](http://hanger-dev.dafiticorp.com:8080/hanger/)
+[http://172.18.10.204:8080/hanger/](http://hanger-dev.dafiticorp.com:8080/hanger/)
 
 2. En la barra lateral izquierda, haga clic en `Login` en la parte inferior
 
