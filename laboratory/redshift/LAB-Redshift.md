@@ -56,7 +56,7 @@ Run the script below to create and populate the tables. Analyze the script to be
 ```sql
 -- table DDL
 
-create table staging.<your_name>_<random>_item_sold (
+create table public.<your_name>_<random>_item_sold (
 	  id_item bigint encode az64
 	, fk_order bigint encode az64
 	, fk_current_status bigint encode az64
@@ -67,7 +67,7 @@ create table staging.<your_name>_<random>_item_sold (
 sortkey(order_date) -- good to use in where clause
 ;
 
-create table staging.<your_name>_<random>_item_paid (
+create table public.<your_name>_<random>_item_paid (
 	   fk_item bigint encode az64
 	 , fk_order bigint encode az64
 	 , paid_date timestamp encode az64
@@ -77,7 +77,7 @@ sortkey(fk_item) -- good to use in join
 
 -- this is a small table containing a list of a few status
 
-create table staging.<your_name>_<random>_status (
+create table public.<your_name>_<random>_status (
 	   id_status bigint encode az64
 	 , status_name varchar(43) encode zstd
 	 , status_description varchar(83) encode zstd
@@ -85,7 +85,7 @@ create table staging.<your_name>_<random>_status (
 ;
 
 -- load the items sold
-COPY staging.<your_name>_<random>_item_sold
+COPY public.<your_name>_<random>_item_sold
 FROM 's3://bi-dafiti-group-dev/dft-trainning/rs-lab/item_sold/'
 iam_role 'arn:aws:iam::296025910508:role/dft-redshift-spectrum'
 DELIMITER ';'
@@ -100,7 +100,7 @@ EXPLICIT_IDS
 ;
 
 -- load the items paid
-COPY staging.<your_name>_<random>_item_paid
+COPY public.<your_name>_<random>_item_paid
 FROM 's3://bi-dafiti-group-dev/dft-trainning/rs-lab/item_paid/'
 iam_role 'arn:aws:iam::296025910508:role/dft-redshift-spectrum'
 DELIMITER ';'
@@ -115,7 +115,7 @@ EXPLICIT_IDS
 ;
 
 -- load the lsit of status
-COPY staging.<your_name>_<random>_status
+COPY public.<your_name>_<random>_status
 FROM 's3://bi-dafiti-group-dev/dft-trainning/rs-lab/status/'
 iam_role 'arn:aws:iam::296025910508:role/dft-redshift-spectrum'
 DELIMITER ';'
@@ -154,8 +154,8 @@ select
 case when p.fk_item is null then 'NOT PAID' else 'PAID' end as is_paid
 , count(s.id_item) as item_qty
 , count(distinct s.fk_order) as order_qty
-from staging.<your_name>_<random>_item_sold as s
-left join staging.<your_name>_<random>_item_paid as p on p.fk_item = s.id_item
+from public.<your_name>_<random>_item_sold as s
+left join public.<your_name>_<random>_item_paid as p on p.fk_item = s.id_item
 where 1=1
 and date(s.order_date) = '2021-02-13'
 group by 1
@@ -198,8 +198,8 @@ st.status_name
 , date(s.order_date) as order_date
 , count(s.id_item) as item_qty
 , count(distinct s.fk_order) as order_qty
-from staging.<your_name>_<random>_item_sold as s
-inner join staging.<your_name>_<random>_status as st on st.id_status = s.fk_current_status
+from public.<your_name>_<random>_item_sold as s
+inner join public.<your_name>_<random>_status as st on st.id_status = s.fk_current_status
 group by 1,2
 ;
 ```
@@ -232,8 +232,8 @@ select
 case when p.fk_item is null then 'NOT PAID' else 'PAID' end as is_paid
 , count(s.id_item) as item_qty
 , count(distinct s.fk_order) as order_qty
-from staging.<your_name>_<random>_item_sold as s
-left join staging.<your_name>_<random>_item_paid as p on p.fk_item = s.id_item and p.fk_order = s.fk_order
+from public.<your_name>_<random>_item_sold as s
+left join public.<your_name>_<random>_item_paid as p on p.fk_item = s.id_item and p.fk_order = s.fk_order
 where 1=1
 and s.order_date between '2021-02-13 00:00:00' and '2021-02-13 23:59:59'
 group by 1
@@ -258,9 +258,9 @@ case when p.fk_item is null then 'NOT PAID' else 'PAID' end as is_paid
 , st.status_name
 , count(s.id_item) as item_qty
 , count(distinct s.fk_order) as order_qty
-from staging.<your_name>_<random>_item_sold as s
-inner join staging.<your_name>_<random>_status as st on st.id_status = s.fk_current_status
-left join staging.<your_name>_<random>_item_paid as p on p.fk_item = s.id_item and p.fk_order = s.fk_order
+from public.<your_name>_<random>_item_sold as s
+inner join public.<your_name>_<random>_status as st on st.id_status = s.fk_current_status
+left join public.<your_name>_<random>_item_paid as p on p.fk_item = s.id_item and p.fk_order = s.fk_order
 where 1=1
 and s.order_date between '2021-02-13 18:00:00' and '2021-02-13 21:59:59'
 group by 1,2
