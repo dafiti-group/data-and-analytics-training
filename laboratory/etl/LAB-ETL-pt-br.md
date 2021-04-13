@@ -187,7 +187,7 @@ select * from spc_staging.${YOUR_NAME}_${RANDOM}_nps_origin_type limit 100;
 
 # Tarefa 2: ETL Fácil com o Glove
 
-Nessa tarefa você irá criar um Job no Hanger Data Orchestration e configurar um processo ETL usando o Glove Data Integration. O Hanger deixa no trabalho de criação de Jobs usando o Glove muito mais fácil.
+Nessa tarefa você irá criar um Job no Hanger Data Orchestration e configurar um processo ETL usando o Glove Data Integration. O Hanger deixa nosso trabalho de criação de Jobs usando o Glove muito mais fácil.
 
 Hanger trabalha junto com o Glove para gerenciar todos os fluxos de processos para garantir a ordem de execução, validação de dados e mais.
 
