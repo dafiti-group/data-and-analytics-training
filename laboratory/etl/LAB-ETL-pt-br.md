@@ -17,7 +17,7 @@ São necessários 40 minutos para completar esse laboratório
 
 ### Visão Geral
 
-Nesse laboratório você irá criar e executar processos ETL extraindo dados de 2 fontes diferentes para carregar em nosso data lake (AWS S3). Durante a execução os dados serão convertidos para arquivos Parquet* para que você tenha uma forma padronizada de acessar os dados através do Redshift Spectrum. Primeiro you vai executar um ETL manualmente para fixar o entendimento do conceito e então usar o Hanger para criar e configurar um Job Glove.
+Nesse laboratório você irá criar e executar processos ETL extraindo dados de 2 fontes diferentes para carregar em nosso data lake (AWS S3). Durante a execução os dados serão convertidos para arquivos Parquet* para que você tenha uma forma padronizada de acessar os dados através do Redshift Spectrum. Primeiro você vai executar um ETL manualmente para fixar o entendimento do conceito e então usar o Hanger para criar e configurar um Job Glove.
 
 > ***Parquet*** é um formato de arquivo colunar amplamente usado para armazenar dados no data lake ao invés de usar formatos de arquivos convencionais como CSV ou JSON. Como Parquet é colunar (os dados são lidos por coluna) você pode alcançar melhores performance nas consultas e redução de custo no final do mês se forem aplicadas as boas práticas.
 
@@ -26,7 +26,7 @@ Nesse laboratório você irá criar e executar processos ETL extraindo dados de 
 
 # Iniciando o Laboratório
 
-Para completar esse Lab you precisa estar conectado à VPN para acessar os recursos necessários.
+Para completar esse Lab você precisa estar conectado à VPN para acessar os recursos necessários.
 Em seu Workbench (que você usa frequentemente para acessar o Redshift) crie uma nova conexão para Redshift com as credenciais a seguir.
 
 **Host:** `bi-dafiti-group-dc2-dev.cofscmejxic8.us-east-1.redshift.amazonaws.com`
