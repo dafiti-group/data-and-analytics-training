@@ -4,11 +4,19 @@
 
 Após completar esse laboratório, você terá aprendido como:
 
-- Manipular arquivos com SQL puro para fazer um ETL simples
-- Lidar com alguns formatos de arquivos
+- Manipular com SQL puro para fazer um ETL 
+- Lidar com alguns formatos de 
 - Criar um processo de ETL automatizado usando Glove
 - Criar um Pipeline de dados no Hanger
 
+ashdfuahfduahf
+asdhfuashdfud
+
+kakakaka hahahha kkkkkkkkk
+
+HASUHASUHSAUSAHAUSHSU
+kkkkkkkkkkkkkkkkkkkkkkk
+hahahah kkkkkkkkkkk
 
 ### Duração
 
